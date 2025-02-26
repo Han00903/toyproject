@@ -3,6 +3,8 @@ body {
     display: flex;
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+
 }
 
 .wrapper {
@@ -85,3 +87,4 @@ body {
 /* 메인 콘텐츠 스타일 */
 .main-content {
     padding: 20px;
+}
