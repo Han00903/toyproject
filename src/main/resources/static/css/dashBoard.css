@@ -40,7 +40,6 @@ body {
 .content {
     flex-grow: 1;
     margin-left: 250px;
-    padding: 20px;
     width: calc(100% - 250px);
 }
 
@@ -54,16 +53,17 @@ body {
 }
 
 /* 페이지 제목 */
-.navbar-left h2 {
+/*.navbar-left h2 {
     margin: 0;
     font-size: 20px;
     color: #333;
-}
+}*/
 
 /* 네비바 오른쪽 버튼 정렬 */
 .navbar-right {
     display: flex;
     align-items: center;
+    margin-left: auto;
 }
 
 .btn-logout {
@@ -73,18 +73,15 @@ body {
     border-radius: 5px;
     margin-left: 10px;
     font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn-logout {
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #dee2e6;
+    color: #495057;
 }
 
 .btn-logout:hover {
-    background-color: #f5c6cb;
-}
-
-/* 메인 콘텐츠 스타일 */
-.main-content {
-    padding: 20px;
+    background-color: #ced4da;
 }
