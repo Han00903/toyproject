@@ -2,6 +2,11 @@ spring:
   application:
     name: admin
 
+  security:
+    jwt:
+      secret: yourSecretKeyHere    # JWT의 secret key (이 값은 반드시 비밀로 보관되어야 합니다)
+      expiration: 86400000         # JWT 만료 시간 (예: 1일 = 86400000 milliseconds)
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/admin?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
