@@ -31,12 +31,14 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/signin", "/signup").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/**").hasRole("USER")
-                .anyRequest().authenticated()
+                .antMatchers("/signin", "/signup", "/css/**", "/js/**", "/images/**").permitAll() // 접근 가능한 페이지
+                .antMatchers(HttpMethod.GET, "/api/**").hasRole("USER") // 인증된 사용자만 api 접근
+                .anyRequest().authenticated() // 나머지 요청은 인증 필요
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+                .authenticationEntryPoint((request, response, authException) -> {
+                    response.sendRedirect("/signin");  // 인증되지 않은 사용자 접근 시 /signin 페이지로 리다이렉트
+                })
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

@@ -18,7 +18,7 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<String> login (@RequestParam String username, @RequestParam String password) {
         // 사용자 인증 절차 (예: 데이터베이스에서 사용자 확인)
         // 인증 정보를 담은 Authentication 객체 생성
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, password);
