@@ -22,7 +22,7 @@ public class JwtTokenProvider {
     public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7); // "Bearer " 제거하고 토큰만 반환
+            return bearerToken.substring(7); // "Bearer " 제거하고 토큰 반환
         }
         return null;
     }
