@@ -1,21 +1,24 @@
-package com.example.admin.entity;
+package com.example.admin.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 //  로그인 & Refresh API 응답을 위한 DTO
-public class TokenResponse {
+@Getter
+@AllArgsConstructor
+public class TokenResponseDto {
 
     private String accessToken;
     private String refreshToken;
 
-    public TokenResponse(String accessToken, String refreshToken) {
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
-    }
-
     public String getAccessToken() {
+
         return accessToken;
+
     }
 
     public String getRefreshToken() {
+
         return refreshToken;
     }
 }

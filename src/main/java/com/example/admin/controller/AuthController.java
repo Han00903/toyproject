@@ -1,8 +1,9 @@
 package com.example.admin.controller;
 
-import com.example.admin.entity.TokenResponse;
+import com.example.admin.dto.TokenResponseDto;
 import com.example.admin.security.JwtTokenProvider;
 import com.example.admin.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +25,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
 
+    @Autowired
     public AuthController(JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager, UserService userService) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
@@ -32,7 +34,7 @@ public class AuthController {
 
     // 로그인 엔드포인트
     @PostMapping("/signin")
-    public ResponseEntity<TokenResponse> login (@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<TokenResponseDto> login (@RequestParam String username, @RequestParam String password) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password)
         );
@@ -42,12 +44,12 @@ public class AuthController {
 
         userService.updateRefreshToken(username, refreshToken); // Refresh Token 저장
 
-        return ResponseEntity.ok(new TokenResponse(accessToken, refreshToken));
+        return ResponseEntity.ok(new TokenResponseDto(accessToken, refreshToken));
     }
 
     // Refresh Token을 이용한 새로운 Access Token 발급
     @PostMapping("/refresh")
-    public ResponseEntity<TokenResponse> refresh(@RequestParam String refreshToken) {
+    public ResponseEntity<TokenResponseDto> refresh(@RequestParam String refreshToken) {
         if (!jwtTokenProvider.validateToken(refreshToken)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
@@ -57,6 +59,6 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>())
         );
 
-        return ResponseEntity.ok(new TokenResponse(newAccessToken, refreshToken));
+        return ResponseEntity.ok(new TokenResponseDto(newAccessToken, refreshToken));
     }
 }
