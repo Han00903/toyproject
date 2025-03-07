@@ -16,7 +16,7 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    private final String secretKey = "yourSecretKey"; // 비밀 키 (보안상 환경변수로 관리하는 것이 좋음)
+    private final String secretKey = "yourSecretKey"; // 비밀 키 (보안상 환경변수로 관리하기)
 
     // HTTP 요청에서 토큰 추출
     public String resolveToken(HttpServletRequest request) {
