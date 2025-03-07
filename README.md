@@ -1,3 +1,5 @@
+### 📝기능명세: [Notion정리](https://www.notion.so/1af821c78b6080b89f18ebba52f2099f)
+
 # 🚀 Git 브랜치 전략
 
 ### **✨ main 브랜치**
